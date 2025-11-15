@@ -22,12 +22,7 @@ jobs:
         PA_WEBAPP_NAME: ${{ secrets.PA_WEBAPP_NAME }}
       run: |
         sshpass -p $PA_API_TOKEN ssh -o StrictHostKeyChecking=no $PA_USERNAME@ssh.pythonanywhere.com "
-          # Navigate to project folder
           cd ~/clock-app &&
-          # Pull latest code from GitHub
           git pull &&
-          # Activate virtualenv directly (works in non-interactive SSH)
-          source /home/SergeyReizman2025/.virtualenvs/clock-app/bin/activate &&
-          # Reload web app to apply changes
           pa_reload_webapp $PA_WEBAPP_NAME
         "
