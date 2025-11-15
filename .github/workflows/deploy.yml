@@ -2,27 +2,28 @@ name: Deploy to PythonAnywhere
 
 on:
   push:
-    branches: [ main ]  # triggers on pushes to main branch
+    branches: [ main ]
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    - name: Install sshpass
-      run: sudo apt-get update && sudo apt-get install -y sshpass
+      - name: Install sshpass
+        run: sudo apt-get update && sudo apt-get install -y sshpass
 
-    - name: Deploy to PythonAnywhere
-      env:
-        PA_USERNAME: ${{ secrets.PA_USERNAME }}
-        PA_API_TOKEN: ${{ secrets.PA_API_TOKEN }}
-        PA_WEBAPP_NAME: ${{ secrets.PA_WEBAPP_NAME }}
-      run: |
-        sshpass -p $PA_API_TOKEN ssh -o StrictHostKeyChecking=no $PA_USERNAME@ssh.pythonanywhere.com "
-          cd ~/clock-app &&
-          git pull &&
+      - name: Deploy to PythonAnywhere
+        env:
+          PA_USERNAME: ${{ secrets.PA_USERNAME }}
+          PA_API_TOKEN: ${{ secrets.PA_API_TOKEN }}
+          PA_WEBAPP_NAME: ${{ secrets.PA_WEBAPP_NAME }}
+        run: |
+          sshpass -p $PA_API_TOKEN ssh -tt -o StrictHostKeyChecking=no $PA_USERNAME@ssh.pythonanywhere.com << 'EOF'
+          cd ~/clock-app
+          git pull
           pa_reload_webapp $PA_WEBAPP_NAME
-        "
+          exit
+          EOF
