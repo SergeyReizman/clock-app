@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <!-- Page title shown in browser tab -->
+    <title>Digital Clock</title>
+
+    <!-- Link to the external CSS file located in /static/style.css -->
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+    <!-- Main container that centers the clock visually -->
+    <div class="clock-container">
+        <!-- Clock display. Starts with "Loading..." until replaced by JS -->
+        <h1 id="clock">Loading...</h1>
+    </div>
+
+    <script>
+        // ----------------------------------------------------
+        // Function to request the current time from Flask API
+        // ----------------------------------------------------
+        function updateClock() {
+
+            // Send a GET request to /time, which returns HH:MM:SS
+            fetch("/time")
+                .then(response => response.text()) // Convert server response to text
+                .then(currentTime => {
+                    // Replace the content of the <h1> with the fetched time
+                    document.getElementById("clock").textContent = currentTime;
+                });
+        }
+
+        // Run clock immediately on page load
+        updateClock();
+
+        // Update the clock every 1 second (1000 ms)
+        setInterval(updateClock, 1000);
+    </script>
+
+</body>
+
+</html>
