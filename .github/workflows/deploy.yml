@@ -26,8 +26,8 @@ jobs:
           cd ~/clock-app &&
           # Pull latest code from GitHub
           git pull &&
-          # Activate virtualenv named 'clock-app'
-          workon clock-app &&
+          # Activate virtualenv directly (works in non-interactive SSH)
+          source /home/SergeyReizman2025/.virtualenvs/clock-app/bin/activate &&
           # Reload web app to apply changes
           pa_reload_webapp $PA_WEBAPP_NAME
         "
