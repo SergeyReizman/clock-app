@@ -1,29 +1,27 @@
-name: Deploy to PythonAnywhere
+name: Auto-Deploy to PythonAnywhere via API
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main ]  # triggers on every push to main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
+      # Step 1: Checkout your GitHub repository
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Install sshpass
-        run: sudo apt-get update && sudo apt-get install -y sshpass
-
-      - name: Deploy to PythonAnywhere
+      # Step 2: Reload PythonAnywhere web app using API
+      - name: Reload PythonAnywhere web app
         env:
           PA_USERNAME: ${{ secrets.PA_USERNAME }}
           PA_API_TOKEN: ${{ secrets.PA_API_TOKEN }}
           PA_WEBAPP_NAME: ${{ secrets.PA_WEBAPP_NAME }}
         run: |
-          sshpass -p $PA_API_TOKEN ssh -tt -o StrictHostKeyChecking=no $PA_USERNAME@ssh.pythonanywhere.com << 'EOF'
-          cd ~/clock-app
-          git pull
-          pa_reload_webapp $PA_WEBAPP_NAME
-          exit
-          EOF
+          echo "Reloading PythonAnywhere web app..."
+          curl -s -H "Authorization: Token $PA_API_TOKEN" \
+               -X POST \
+               https://www.pythonanywhere.com/api/v0/user/$PA_USERNAME/webapps/$PA_WEBAPP_NAME/reload/ \
+          && echo "Reload request sent successfully."
