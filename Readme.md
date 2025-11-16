@@ -4,6 +4,8 @@ A modern, visually engaging digital clock built with Flask 3.0.3 and vanilla Jav
 
 Now with automatic deployment to PythonAnywhere via GitHub Actions, every push to main updates the live app instantly! 🌈✨
 
+https://img.shields.io/badge/Flask-3.0.3-green https://img.shields.io/badge/Python-3.7%252B-blue https://img.shields.io/badge/License-MIT-lightgrey
+
 ✨ Features
 
 Live Digital Clock — updates every second in real time
@@ -37,7 +39,6 @@ pip install -r requirements.txt
 Run Locally
 python app.py
 
-
 Open in your browser:
 http://127.0.0.1:5000
 
@@ -46,35 +47,36 @@ clock-app/
 │
 ├── app.py                 # Flask application
 ├── requirements.txt       # Project dependencies
-├── README.md              # Documentation
-│
+├── README.md             # Project documentation
 ├── templates/
-│   └── index.html         # Main HTML template
-│
+│   └── index.html        # Main HTML template
 └── static/
-    └── style.css          # Rainbow gradient + neon glow CSS
+    └── style.css         # Custom CSS styling
 
 🛠️ Technical Overview
 
+🛠️ Technical Details
+
 Backend (Flask)
 
-Flask 3.0.3
+Flask 3.0.3 - Lightweight web framework
 
-/ → serves HTML template
+JSON API - /time endpoint returns current server time
 
-/time → returns current server time (HH:MM:SS)
+Template Rendering - Serves the main HTML page
 
 Frontend
 
-Vanilla JavaScript fetches /time every second
+Vanilla JavaScript - AJAX calls to update time every second
 
-CSS animations for rainbow glow effects using text-shadow and @keyframes
+CSS3 Animations - Glow effects and floating animations
 
-Glassmorphism using backdrop-filter: blur(10px)
+Google Fonts - Orbitron font for digital display
 
-Fully responsive using media queries for tablet and mobile
+Glass Morphism - Modern frosted glass design
 
-No frontend frameworks required
+Responsive Design - Mobile-first approach
+
 
 🔌 API Endpoints
 Endpoint	Method	Description
@@ -119,17 +121,12 @@ Configure WSGI path
 
 Reload web app → live rainbow digital clock
 
-Other Platforms:
 
-Heroku
+Dependencies not installed
 
-AWS Elastic Beanstalk
+pip install --upgrade pip
+pip install -r requirements.txt
 
-DigitalOcean App Platform
-
-Railway
-
-Render.com
 
 🐛 Troubleshooting
 
@@ -160,5 +157,12 @@ Open a pull request
 📝 License
 
 This project is open source and available under the MIT License
+
+🙏 Acknowledgments
+Flask - The web framework used
+
+Google Fonts - Orbitron font
+
+CSS3 - Modern styling techniques
 
 ✅ Pro Tip: The repo now includes GitHub Actions → PythonAnywhere API auto-deploy workflow. Every push to main updates the live web app instantly — no manual uploads required!
