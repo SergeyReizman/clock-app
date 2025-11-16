@@ -1,10 +1,12 @@
 ⏰ Digital Clock App (Flask 3.0.3)
-
 A modern, visually engaging digital clock built with Flask 3.0.3 and vanilla JavaScript. Features include a rainbow animated gradient, neon glow effects, glassmorphism UI, and a fully responsive design. The clock updates every second using a lightweight backend API endpoint.
 
 Now with automatic deployment to PythonAnywhere via GitHub Actions, every push to main updates the live app instantly! 🌈✨
 
-https://img.shields.io/badge/Flask-3.0.3-green https://img.shields.io/badge/Python-3.7%252B-blue https://img.shields.io/badge/License-MIT-lightgrey
+https://img.shields.io/badge/Flask-3.0.3-green
+https://img.shields.io/badge/Python-3.7%252B-blue
+https://img.shields.io/badge/License-MIT-lightgrey
+https://img.shields.io/badge/CI%252FCD-PythonAnywhere-orange
 
 ✨ Features
 
@@ -32,7 +34,7 @@ Python 3.7+
 pip installed
 
 Installation
-git clone <your-repo-url>
+git clone https://github.com/SergeyReizman/clock-app.git
 cd clock-app
 pip install -r requirements.txt
 
